@@ -1,0 +1,23 @@
+{
+  "name": "focus-guard",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "专注守门员 - Chrome 网站访问自我节制扩展",
+  "scripts": {
+    "icons": "node scripts/gen-icons.mjs",
+    "cover": "node scripts/gen-cover.mjs",
+    "dev": "npm run icons && vite build --watch",
+    "build": "npm run icons && vite build",
+    "pack": "node scripts/pack.mjs",
+    "changelog": "node scripts/changelog.mjs"
+  },
+  "dependencies": {
+    "@arco-design/web-vue": "^2.57.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.0.7"
+  }
+}

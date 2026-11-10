@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>该网站已被屏蔽</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="wrap">
+        <div class="shield">🛡</div>
+
+        <h1 id="title">这个网站已被暂时屏蔽</h1>
+        <p class="sub" id="sub">你正在访问 <b id="host">该站点</b>，它位于你的自我节制黑名单中。</p>
+
+        <div class="clock" id="clock">00:00</div>
+        <div class="clock-label" id="clockLabel">距离解除屏蔽还剩</div>
+
+        <div class="meta" id="meta"></div>
+
+        <p class="quote" id="quote"></p>
+
+        <div class="actions" id="actions">
+          <button class="btn primary" id="btn-pass" hidden>使用自由通行证解除</button>
+          <button class="btn ghost" id="btn-force">提前解除（有代价）</button>
+          <button class="btn ghost" id="btn-back">离开，去做正事</button>
+        </div>
+
+        <div class="panel" id="panel" hidden>
+          <div class="panel-title">解除后果</div>
+          <ul class="penalty" id="penalty"></ul>
+          <label class="pledge-label" id="pledgeWrap" hidden>
+            <span>请逐字输入承诺语</span>
+            <input id="pledgeInput" type="text" autocomplete="off" spellcheck="false" />
+            <em id="pledgeHint"></em>
+          </label>
+          <div class="panel-actions">
+            <button class="btn danger" id="btn-confirm" disabled>冷静 10 秒后可确认</button>
+            <button class="btn ghost" id="btn-cancel">我再坚持一下</button>
+          </div>
+        </div>
+
+        <p class="foot">专注守门员 · 用一点摩擦，换回你的注意力</p>
+      </section>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
