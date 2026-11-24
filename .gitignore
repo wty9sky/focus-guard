@@ -2,5 +2,3 @@ node_modules
 dist
 release
 .DS_Store
-scripts
-docs

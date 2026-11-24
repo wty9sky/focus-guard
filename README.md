@@ -4,7 +4,7 @@
 
 一个用于「网站访问自我节制」的 Chrome 扩展（Manifest V3）。核心不是简单地把网站封死，而是：**提高一次冲动的成本，同时让坚持变得有回报**。
 
-> 使用说明见 [`docs/USAGE.md`](docs/USAGE.md)，版本变更见 [`CHANGELOG.md`](CHANGELOG.md)；
+> 使用说明见 [`docs/USAGE.md`](docs/USAGE.md)，版本变更见 [`CHANGELOG.md`](CHANGELOG.md)，发布流程（GitHub Releases / Packages）见 [`docs/RELEASING.md`](docs/RELEASING.md)；
 > 封面图源文件为 [`docs/cover.svg`](docs/cover.svg) 与 [`docs/poster.svg`](docs/poster.svg)，`npm run cover` 可重新导出 PNG。
 
 ---

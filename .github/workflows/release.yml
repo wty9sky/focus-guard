@@ -1,0 +1,83 @@
+name: Release
+
+# 推送 v 开头的 tag 时自动构建并发布 GitHub Release：
+#   focus-guard-<version>-chrome.zip  插件包（解压即可加载）
+#   focus-guard-<version>-code.zip    纯源码包（不含 docs / scripts）
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '要发布的 tag，例如 v1.0.0（需已存在）'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: 构建并发布 Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+          fetch-depth: 0
+
+      - name: 准备 Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 校验版本 / tag / CHANGELOG 是否一致
+        run: npm run changelog -- --check
+
+      - name: 构建并打包
+        run: npm run pack
+
+      - name: 生成 Release 说明
+        env:
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: node scripts/release-notes.mjs --tag "$TAG" --out "$RUNNER_TEMP/release-notes.md"
+
+      - name: 创建或更新 Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          set -e
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG 已存在，更新说明并覆盖产物"
+            gh release upload "$TAG" release/*.zip --clobber
+            gh release edit "$TAG" --notes-file "$RUNNER_TEMP/release-notes.md"
+          else
+            gh release create "$TAG" release/*.zip \
+              --title "$TAG · 专注守门员" \
+              --notes-file "$RUNNER_TEMP/release-notes.md" \
+              --verify-tag
+          fi
+
+      - name: 汇总产物
+        run: |
+          {
+            echo "### Release ${{ inputs.tag || github.ref_name }}"
+            echo ""
+            echo "| 文件 | 大小 |"
+            echo "| --- | --- |"
+            for f in release/*.zip; do
+              echo "| $(basename "$f") | $(du -h "$f" | cut -f1) |"
+            done
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,66 @@
+name: Package
+
+# 把源码发布到 GitHub Packages 的 npm registry：@<owner>/focus-guard
+# 触发：Release 发布后自动执行，也可手动指定 tag 重发。
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '要发布的 tag，例如 v1.0.0（需已存在）'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: package-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: 发布到 GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+          fetch-depth: 0
+
+      - name: 准备 Node（指向 GitHub Packages）
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 改写 package.json 为可发布形态
+        run: node scripts/prepare-package.mjs
+
+      - name: 构建一次，确认包内容可编译
+        run: npm run build
+
+      - name: 发布
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 汇总
+        run: |
+          {
+            echo "### GitHub Packages"
+            echo ""
+            echo '```'
+            echo "npm install @${{ github.repository_owner }}/focus-guard"
+            echo '```'
+            echo ""
+            echo "已发布版本见仓库的 Packages 页面。"
+          } >> "$GITHUB_STEP_SUMMARY"

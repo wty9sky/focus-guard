@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="dark" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#14171F"/>
+      <stop offset="0.55" stop-color="#191D27"/>
+      <stop offset="1" stop-color="#101319"/>
+    </linearGradient>
+    <linearGradient id="shieldDark" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#FF7D6B"/>
+      <stop offset="1" stop-color="#E23D2C"/>
+    </linearGradient>
+    <linearGradient id="cardFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.03"/>
+    </linearGradient>
+    <filter id="glowRed" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+    <filter id="cardBlur" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="24" stdDeviation="36" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="630" fill="url(#dark)"/>
+  <circle cx="1130" cy="70" r="240" fill="#F53F3F" opacity="0.28" filter="url(#glowRed)"/>
+  <circle cx="120" cy="620" r="220" fill="#165DFF" opacity="0.22" filter="url(#glowRed)"/>
+
+  <!-- 细网格纹理 -->
+  <g stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="140" x2="1200" y2="140"/>
+    <line x1="0" y1="490" x2="1200" y2="490"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="760" y1="0" x2="760" y2="630"/>
+  </g>
+
+  <!-- 品牌 -->
+  <g transform="translate(84,66) scale(0.92)">
+    <path d="M28 2 L52 12 V32 C52 46 41 56 28 63 C15 56 4 46 4 32 V12 Z" fill="url(#shieldDark)"/>
+    <rect x="20.5" y="27" width="4.6" height="13" rx="2.3" fill="#C02E1C"/>
+    <rect x="30.9" y="27" width="4.6" height="13" rx="2.3" fill="#C02E1C"/>
+  </g>
+  <text x="150" y="98" font-size="27" font-weight="600" fill="#FFFFFF" letter-spacing="0.5">专注守门员</text>
+  <text x="151" y="122" font-size="13" letter-spacing="4" fill="#8B93A5">FOCUS GUARD</text>
+
+  <!-- 主文案 -->
+  <text x="84" y="268" font-size="70" font-weight="700" fill="#FFFFFF" letter-spacing="1">别跟推荐算法</text>
+  <text x="84" y="352" font-size="70" font-weight="700" fill="#FFFFFF" letter-spacing="1">拼意志力</text>
+
+  <text x="86" y="410" font-size="22" fill="#B4BCCC">拦抖音、短剧这类刷起来没底的网站——</text>
+  <text x="86" y="446" font-size="22" fill="#B4BCCC">想打开，先看清代价，再干等 10 秒。</text>
+
+  <!-- 特性胶囊 -->
+  <g font-size="16" fill="#E9EDF5">
+    <rect x="86" y="486" width="120" height="38" rx="19" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.14"/>
+    <text x="112" y="511">定时屏蔽</text>
+
+    <rect x="218" y="486" width="134" height="38" rx="19" fill="#F53F3F" fill-opacity="0.16" stroke="#F53F3F" stroke-opacity="0.38"/>
+    <text x="244" y="511" fill="#FFB4A8">10 秒冷静</text>
+
+    <rect x="364" y="486" width="134" height="38" rx="19" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.14"/>
+    <text x="390" y="511">积分换奖励</text>
+  </g>
+
+  <!-- 左下角说明 -->
+  <text x="86" y="580" font-size="15" fill="#6E778A">Chrome 扩展 · 数据只存在本地 · 不联网</text>
+
+  <!-- 右侧：玻璃质感的拦截提示卡 -->
+  <g transform="translate(790,86) rotate(-4 180 230)" filter="url(#cardBlur)">
+    <rect x="0" y="0" width="360" height="500" rx="26" fill="url(#cardFade)" stroke="#FFFFFF" stroke-opacity="0.13"/>
+
+    <circle cx="180" cy="86" r="30" fill="#F53F3F" fill-opacity="0.18"/>
+    <g transform="translate(166,72) scale(0.5)">
+      <path d="M28 2 L52 12 V32 C52 46 41 56 28 63 C15 56 4 46 4 32 V12 Z" fill="#FF8A78"/>
+      <path d="M18 31 L25 39 L38 24" fill="none" stroke="#15181F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <text x="180" y="150" font-size="19" font-weight="600" fill="#FFFFFF" text-anchor="middle">这个网站已被暂时屏蔽</text>
+    <text x="180" y="176" font-size="14" fill="#8B93A5" text-anchor="middle">douyin.com</text>
+
+    <text x="180" y="252" font-size="54" font-weight="700" fill="#FF7A6B" text-anchor="middle" font-family="'SF Pro Display','Helvetica Neue',Arial,sans-serif">24:00</text>
+    <text x="180" y="278" font-size="13" fill="#8B93A5" text-anchor="middle">距离解除屏蔽还剩</text>
+
+    <line x1="40" y1="308" x2="320" y2="308" stroke="#FFFFFF" stroke-opacity="0.10"/>
+
+    <g font-size="15">
+      <text x="40" y="342" fill="#9AA2B4">扣除积分</text>
+      <text x="320" y="342" fill="#FF8A78" font-weight="600" text-anchor="end">-120 分</text>
+
+      <text x="40" y="376" fill="#9AA2B4">进入冷却</text>
+      <text x="320" y="376" fill="#E9EDF5" font-weight="600" text-anchor="end">30 分钟</text>
+
+      <text x="40" y="410" fill="#9AA2B4">连胜清零</text>
+      <text x="320" y="410" fill="#E9EDF5" font-weight="600" text-anchor="end">4 天 → 0</text>
+    </g>
+
+    <rect x="40" y="436" width="280" height="44" rx="12" fill="#F53F3F" fill-opacity="0.16" stroke="#F53F3F" stroke-opacity="0.35"/>
+    <text x="180" y="464" font-size="14" fill="#FFB4A8" text-anchor="middle">冷静 10 秒后可确认</text>
+  </g>
+</svg>
